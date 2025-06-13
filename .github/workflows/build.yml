@@ -114,9 +114,10 @@ jobs:
           # Sync repo and apply patches
           $REPO --version
           $REPO --trace sync -c --no-clone-bundle --no-tags --optimized-fetch -j$(nproc --all) --fail-fast
+      - name: copy op12_gki_defconfig_systemVipc
+          cd "$CONFIG" && echo pwd
           wget https://github.com/17U/OnePlus_Kernel/blob/main/op12_gki_defconfig_systemVipc  &&  cp op12_gki_defconfig_systemVipc ./kernel_platform/common/arch/arm64/configs/gki_defconfig
-  
-
+          cat -n ./kernel_platform/common/arch/arm64/configs/gki_defconfig
       - name: Run sed and perl Commands
         run: |
           echo "Changing to configuration directory: $CONFIG..."
